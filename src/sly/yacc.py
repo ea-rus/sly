@@ -1338,11 +1338,11 @@ class LRTable(object):
             # Loop over productions in lookback
             for state, p in lb:
                 if state not in p.lookaheads:
-                    p.lookaheads[state] = []
+                    p.lookaheads[state] = set()
+
                 f = followset.get(trans, [])
                 for a in f:
-                    if a not in p.lookaheads[state]:
-                        p.lookaheads[state].append(a)
+                    p.lookaheads[state].add(a)
 
     # -----------------------------------------------------------------------------
     # add_lalr_lookaheads()
